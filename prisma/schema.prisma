@@ -15,7 +15,30 @@ model post {
   titel String
   content String 
   published Boolean @default(false)
-  authorName String?
+  authorId Int
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+}
+
+model user {
+   id Int @id @default(autoincrement())
+   username String @unique 
+   email String
+   role userRole
+} 
+
+model profile {
+  id Int @id @default(autoincrement())
+  bio  String?
+  userID Int
+}
+
+model category  {
+  id Int @id @default(autoincrement())
+  name String
+}
+
+enum userRole {
+  user
+  admin
 }
